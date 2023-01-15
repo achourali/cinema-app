@@ -26,12 +26,6 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-      - name: Login to GitHub Container Registry
-        uses: docker/login-action@v2
-        with:
-          registry: ghcr.io
-          username: ${{ github.repository_owner }}
-          password: ${{ secrets.CR_PAT }}
       - name: Get the version
         id: get_version
         run: echo "VERSION=${GITHUB_REF/refs\/tags\//}" >> $GITHUB_OUTPUT
@@ -41,42 +35,33 @@ jobs:
           push: true
           context: ./users/
           file: ./users/Dockerfile
-          tags: |
-            achourali/${{ env.USERS_IMAGE_NAME }}:${{ steps.get_version.outputs.VERSION }}
-            ghcr.io/achourali/${{ env.USERS_IMAGE_NAME }}:${{ steps.get_version.outputs.VERSION }}
+          tags: achourali/${{ env.USERS_IMAGE_NAME }}:${{ steps.get_version.outputs.VERSION }}
       - name: Build and push website microservice
         uses: docker/build-push-action@v3
         with:
           push: true
           context: ./website/
           file: ./website/Dockerfile
-          tags: |
-            achourali/${{ env.WEBSITE_IMAGE_NAME }}:${{ steps.get_version.outputs.VERSION }}
-            ghcr.io/achourali/${{ env.WEBSITE_IMAGE_NAME }}:${{ steps.get_version.outputs.VERSION }}
+          tags: achourali/${{ env.WEBSITE_IMAGE_NAME }}:${{ steps.get_version.outputs.VERSION }}
       - name: Build and push movies microservice
         uses: docker/build-push-action@v3
         with:
           push: true
           context: ./movies/
           file: ./movies/Dockerfile
-          tags: |
-            achourali/${{ env.MOVIES_IMAGE_NAME }}:${{ steps.get_version.outputs.VERSION }}
-            ghcr.io/achourali/${{ env.MOVIES_IMAGE_NAME }}:${{ steps.get_version.outputs.VERSION }}
+          tags: achourali/${{ env.MOVIES_IMAGE_NAME }}:${{ steps.get_version.outputs.VERSION }}
       - name: Build and push showtimes microservice
         uses: docker/build-push-action@v3
         with:
           push: true
           context: ./showtimes/
           file: ./showtimes/Dockerfile
-          tags: |
-            achourali/${{ env.SHOWTIMES_IMAGE_NAME }}:${{ steps.get_version.outputs.VERSION }}
-            ghcr.io/achourali/${{ env.SHOWTIMES_IMAGE_NAME }}:${{ steps.get_version.outputs.VERSION }}
+          tags: achourali/${{ env.SHOWTIMES_IMAGE_NAME }}:${{ steps.get_version.outputs.VERSION }}
       - name: Build and push bookings microservice
         uses: docker/build-push-action@v3
         with:
           push: true
           context: ./bookings/
           file: ./bookings/Dockerfile
-          tags: |
-            achourali/${{ env.BOOKINGS_IMAGE_NAME }}:${{ steps.get_version.outputs.VERSION }}
-            ghcr.io/achourali/${{ env.BOOKINGS_IMAGE_NAME }}:${{ steps.get_version.outputs.VERSION }}
+          tags: achourali/${{ env.BOOKINGS_IMAGE_NAME }}:${{ steps.get_version.outputs.VERSION }}
+            
