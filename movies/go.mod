@@ -1,4 +1,4 @@
-module github.com/mmorejon/microservices-docker-go-mongodb/movies
+module github.com/achourali/cinema-app/movies
 
 go 1.19
 

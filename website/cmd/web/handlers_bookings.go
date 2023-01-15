@@ -5,10 +5,10 @@ import (
 	"net/http"
 	"text/template"
 
+	"github.com/achourali/cinema-app/bookings/pkg/models"
+	modelsShowTime "github.com/achourali/cinema-app/showtimes/pkg/models"
+	modelsUser "github.com/achourali/cinema-app/users/pkg/models"
 	"github.com/gorilla/mux"
-	"github.com/mmorejon/microservices-docker-go-mongodb/bookings/pkg/models"
-	modelsShowTime "github.com/mmorejon/microservices-docker-go-mongodb/showtimes/pkg/models"
-	modelsUser "github.com/mmorejon/microservices-docker-go-mongodb/users/pkg/models"
 )
 
 type bookingTemplateData struct {

@@ -1,4 +1,4 @@
-module github.com/mmorejon/microservices-docker-go-mongodb/showtimes
+module github.com/achourali/cinema-app/showtimes
 
 go 1.19
 

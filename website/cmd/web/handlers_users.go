@@ -5,8 +5,8 @@ import (
 	"net/http"
 	"text/template"
 
+	"github.com/achourali/cinema-app/users/pkg/models"
 	"github.com/gorilla/mux"
-	"github.com/mmorejon/microservices-docker-go-mongodb/users/pkg/models"
 )
 
 type userTemplateData struct {

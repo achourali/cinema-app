@@ -1,4 +1,4 @@
-module github.com/mmorejon/microservices-docker-go-mongodb/users
+module github.com/achourali/cinema-app/users
 
 go 1.19
 

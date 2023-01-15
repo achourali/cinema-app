@@ -7,8 +7,8 @@ import (
 	"net/http"
 	"text/template"
 
+	"github.com/achourali/cinema-app/movies/pkg/models"
 	"github.com/gorilla/mux"
-	"github.com/mmorejon/microservices-docker-go-mongodb/movies/pkg/models"
 )
 
 type movieTemplateData struct {

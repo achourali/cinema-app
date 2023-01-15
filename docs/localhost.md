@@ -27,13 +27,13 @@ Use the following command to deploy all services in your local environment.
 ```bash
 $ docker-compose up -d
 
-Creating microservices-docker-go-mongodb_showtimes_1 ... done
-Creating microservices-docker-go-mongodb_db_1        ... done
-Creating microservices-docker-go-mongodb_proxy_1     ... done
-Creating microservices-docker-go-mongodb_website_1   ... done
-Creating microservices-docker-go-mongodb_users_1     ... done
-Creating microservices-docker-go-mongodb_movies_1    ... done
-Creating microservices-docker-go-mongodb_bookings_1  ... done
+Creating cinema-app_showtimes_1 ... done
+Creating cinema-app_db_1        ... done
+Creating cinema-app_proxy_1     ... done
+Creating cinema-app_website_1   ... done
+Creating cinema-app_users_1     ... done
+Creating cinema-app_movies_1    ... done
+Creating cinema-app_bookings_1  ... done
 ```
 
 ```bash
@@ -41,13 +41,13 @@ $ docker-compose ps
 
                    Name                                  Command               State                     Ports
 ---------------------------------------------------------------------------------------------------------------------------------
-microservices-docker-go-mongodb_bookings_1    ./cinema-bookins -mongoURI ...   Up
-microservices-docker-go-mongodb_db_1          docker-entrypoint.sh mongod      Up      27017/tcp
-microservices-docker-go-mongodb_movies_1      ./cinema-movies -mongoURI  ...   Up
-microservices-docker-go-mongodb_proxy_1       /entrypoint.sh --api=true  ...   Up      0.0.0.0:80->80/tcp, 0.0.0.0:8080->8080/tcp
-microservices-docker-go-mongodb_showtimes_1   ./cinema-showtimes -mongoU ...   Up
-microservices-docker-go-mongodb_users_1       ./cinema-users -mongoURI m ...   Up
-microservices-docker-go-mongodb_website_1     ./cinema-website -usersAPI ...   Up
+cinema-app_bookings_1    ./cinema-bookins -mongoURI ...   Up
+cinema-app_db_1          docker-entrypoint.sh mongod      Up      27017/tcp
+cinema-app_movies_1      ./cinema-movies -mongoURI  ...   Up
+cinema-app_proxy_1       /entrypoint.sh --api=true  ...   Up      0.0.0.0:80->80/tcp, 0.0.0.0:8080->8080/tcp
+cinema-app_showtimes_1   ./cinema-showtimes -mongoU ...   Up
+cinema-app_users_1       ./cinema-users -mongoURI m ...   Up
+cinema-app_website_1     ./cinema-website -usersAPI ...   Up
 ```
 
 Once the services have started, you can access the web through the following link: <http://localhost>.
@@ -119,13 +119,13 @@ $ curl -X GET http://localhost/api/users/
 ```bash
 $ docker-compose stop
 
-Stopping microservices-docker-go-mongodb_proxy_1     ... done
-Stopping microservices-docker-go-mongodb_users_1     ... done
-Stopping microservices-docker-go-mongodb_movies_1    ... done
-Stopping microservices-docker-go-mongodb_db_1        ... done
-Stopping microservices-docker-go-mongodb_bookings_1  ... done
-Stopping microservices-docker-go-mongodb_website_1   ... done
-Stopping microservices-docker-go-mongodb_showtimes_1 ... done
+Stopping cinema-app_proxy_1     ... done
+Stopping cinema-app_users_1     ... done
+Stopping cinema-app_movies_1    ... done
+Stopping cinema-app_db_1        ... done
+Stopping cinema-app_bookings_1  ... done
+Stopping cinema-app_website_1   ... done
+Stopping cinema-app_showtimes_1 ... done
 ```
 
 ## Traefik Proxy dashboard
@@ -143,7 +143,7 @@ If you want to include new functionalities, fix bugs or do some tests use the so
 ```yaml
   users:
     build: ./users                                   # uncomment this line
-    # image: ghcr.io/mmorejon/cinema-users:v2.1.0    # comment this line
+    # image: ghcr.io/achourali/cinema-users:v2.1.0    # comment this line
     command:
       - "-mongoURI"
       - "mongodb://db:27017/"

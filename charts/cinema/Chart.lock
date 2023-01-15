@@ -1,6 +1,6 @@
 dependencies:
 - name: mongodb
-  repository: https://charts.bitnami.com/bitnami
+  repository: https://raw.githubusercontent.com/bitnami/charts/pre-2022/bitnami
   version: 10.31.5
 - name: users
   repository: ""
@@ -17,5 +17,5 @@ dependencies:
 - name: website
   repository: ""
   version: 0.x.x
-digest: sha256:2f19cdf3c5ca81aa17f343dc7e43f4f25485f720f9e1801feb65656836230ccb
-generated: "2022-11-26T23:48:45.502895+01:00"
+digest: sha256:da280e85afe5e0f3bd6fed315fd84b7dd7cc894fa4a95a8412466a3e9efe6e65
+generated: "2023-01-15T18:20:22.621220399+01:00"

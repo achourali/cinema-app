@@ -5,8 +5,8 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/achourali/cinema-app/showtimes/pkg/models"
 	"github.com/gorilla/mux"
-	"github.com/mmorejon/microservices-docker-go-mongodb/showtimes/pkg/models"
 )
 
 func (app *application) all(w http.ResponseWriter, r *http.Request) {

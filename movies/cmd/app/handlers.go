@@ -4,8 +4,8 @@ import (
 	"encoding/json"
 	"net/http"
 
+	"github.com/achourali/cinema-app/movies/pkg/models"
 	"github.com/gorilla/mux"
-	"github.com/mmorejon/microservices-docker-go-mongodb/movies/pkg/models"
 )
 
 func (app *application) all(w http.ResponseWriter, r *http.Request) {
