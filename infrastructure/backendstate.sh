@@ -5,7 +5,7 @@ STORAGE_ACCOUNT_NAME=cinematfstate
 CONTAINER_NAME=tfstate
 
 # Create resource group
-az group create --name $RESOURCE_GROUP_NAME --location fr-south
+az group create --name $RESOURCE_GROUP_NAME --location francecentral
 
 # Create storage account
 az storage account create --resource-group $RESOURCE_GROUP_NAME --name $STORAGE_ACCOUNT_NAME --sku Standard_LRS --encryption-services blob

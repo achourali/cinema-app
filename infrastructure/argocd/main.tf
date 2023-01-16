@@ -5,9 +5,6 @@ resource "kubernetes_namespace" "kn" {
 }
 
 
-
-
-
 resource "helm_release" "argo" {
   name       = "argo-cd"
   repository = "https://argoproj.github.io/argo-helm"
