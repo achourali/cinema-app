@@ -40,7 +40,7 @@ services:
 
   website:
     # build: ./website
-    image: ghcr.io/achourali/cinema-website:v2.2.0
+    image: aliachour/cinema-website:v2.2.0
     command:
       - "-usersAPI"
       - "http://users:4000/api/users/"
@@ -57,7 +57,7 @@ services:
 
   movies:
     # build: ./movies
-    image: ghcr.io/achourali/cinema-movies:v2.2.0
+    image: aliachour/cinema-movies:v2.2.0
     command:
       - "-mongoURI"
       - "mongodb://db:27017/"
@@ -75,7 +75,7 @@ services:
 
   bookings:
     # build: ./bookings
-    image: ghcr.io/achourali/cinema-bookings:v2.2.0
+    image: aliachour/cinema-bookings:v2.2.0
     command:
       - "-mongoURI"
       - "mongodb://db:27017/"
@@ -91,7 +91,7 @@ services:
 
   showtimes:
     # build: ./showtimes
-    image: ghcr.io/achourali/cinema-showtimes:v2.2.0
+    image: aliachour/cinema-showtimes:v2.2.0
     command:
       - "-mongoURI"
       - "mongodb://db:27017/"
@@ -107,7 +107,7 @@ services:
 
   users:
     # build: ./users
-    image: ghcr.io/achourali/cinema-users:v2.2.0
+    image: aliachour/cinema-users:v2.2.0
     command:
       - "-mongoURI"
       - "mongodb://db:27017/"

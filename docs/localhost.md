@@ -143,7 +143,7 @@ If you want to include new functionalities, fix bugs or do some tests use the so
 ```yaml
   users:
     build: ./users                                   # uncomment this line
-    # image: ghcr.io/achourali/cinema-users:v2.1.0    # comment this line
+    # image: aliachour/cinema-users:v2.1.0    # comment this line
     command:
       - "-mongoURI"
       - "mongodb://db:27017/"
