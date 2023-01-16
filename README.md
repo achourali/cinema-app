@@ -1,3 +1,9 @@
+### Architecture
+
+![overview](docs/images/overview.jpg)
+
+
+
 ### Steps
 - Running the script infrastructure/backendstate.sh 
 ```
