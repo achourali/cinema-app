@@ -90,7 +90,3 @@ func (app *application) delete(w http.ResponseWriter, r *http.Request) {
 
 	app.infoLog.Printf("Have been eliminated %d movie(s)", deleteResult.DeletedCount)
 }
-
-func (app *application) healthz(w http.ResponseWriter, _ *http.Request) {
-	w.WriteHeader(http.StatusOK)
-}

@@ -11,7 +11,6 @@ func (app *application) routes() *mux.Router {
 	r.HandleFunc("/api/movies/{id}", app.findByID).Methods("GET")
 	r.HandleFunc("/api/movies/", app.insert).Methods("POST")
 	r.HandleFunc("/api/movies/{id}", app.delete).Methods("DELETE")
-	r.HandleFunc("/healthz/", app.healthz).Methods("GET")
 
 	return r
 }

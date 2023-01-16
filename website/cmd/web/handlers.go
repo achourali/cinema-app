@@ -50,3 +50,10 @@ func (app *application) static(dir string) http.Handler {
 	dirCleaned := filepath.Clean(dir)
 	return http.StripPrefix("/static/", http.FileServer(http.Dir(dirCleaned)))
 }
+
+func (app *application) test(w http.ResponseWriter, r *http.Request) {
+	w.WriteHeader(http.StatusOK)
+	w.Header().Set("Content-Type", "application/text")
+	w.Write([]byte("test1"))
+	return
+}

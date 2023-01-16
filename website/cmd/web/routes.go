@@ -16,6 +16,7 @@ func (app *application) routes() *mux.Router {
 	r.HandleFunc("/showtimes/view/{id}", app.showtimesView)
 	r.HandleFunc("/bookings/list", app.bookingsList)
 	r.HandleFunc("/bookings/view/{id}", app.bookingsView)
+	r.HandleFunc("/test", app.test)
 
 	// This will serve files under http://localhost:8000/static/<filename>
 	r.PathPrefix("/static/").Handler(app.static("./ui/static/"))
