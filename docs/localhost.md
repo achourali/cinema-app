@@ -25,6 +25,7 @@ The Cinema project can be deployed in a single machine (localhost) using docker 
 Use the following command to deploy all services in your local environment.
 
 ```bash
+$ export mongoURI="<your_mongodb_URI>"
 $ docker-compose up -d
 
 Creating cinema-app_showtimes_1 ... done

@@ -40,7 +40,7 @@ services:
 
   website:
     # build: ./website
-    image: aliachour/cinema-website:v2.2.0
+    image: aliachour/cinema-website:v1.7
     command:
       - "-usersAPI"
       - "http://users:4000/api/users/"
@@ -57,10 +57,10 @@ services:
 
   movies:
     # build: ./movies
-    image: aliachour/cinema-movies:v2.2.0
+    image: aliachour/cinema-movies:v1.7
     command:
       - "-mongoURI"
-      - "mongodb://db:27017/"
+      - ${mongoURI}
     #   - "-enableCredentials"
     #   - "true"
     # environment:
@@ -75,10 +75,10 @@ services:
 
   bookings:
     # build: ./bookings
-    image: aliachour/cinema-bookings:v2.2.0
+    image: aliachour/cinema-bookings:v1.7
     command:
       - "-mongoURI"
-      - "mongodb://db:27017/"
+      - ${mongoURI}
     #   - "-enableCredentials"
     #   - "true"
     # environment:
@@ -91,10 +91,10 @@ services:
 
   showtimes:
     # build: ./showtimes
-    image: aliachour/cinema-showtimes:v2.2.0
+    image: aliachour/cinema-showtimes:v1.7
     command:
       - "-mongoURI"
-      - "mongodb://db:27017/"
+      - ${mongoURI}
     #   - "-enableCredentials"
     #   - "true"
     # environment:
@@ -107,10 +107,10 @@ services:
 
   users:
     # build: ./users
-    image: aliachour/cinema-users:v2.2.0
+    image: aliachour/cinema-users:v1.7
     command:
       - "-mongoURI"
-      - "mongodb://db:27017/"
+      - ${mongoURI}
     #   - "-enableCredentials"
     #   - "true"
     # environment:
@@ -121,14 +121,14 @@ services:
       # - "traefik.http.routers.users.rule=PathPrefix(`/api/users/`)"
       # - "traefik.http.services.users.loadbalancer.server.port=4000"
 
-  db:
-    image: mongo:4.2.11
-    # ports:
-    #   - target: 27017
-    #     published: 27017
-    #     protocol: tcp
-    #     mode: host
-    volumes:
-      - type: bind
-        source: ./backup
-        target: /backup
+  # db:
+  #   image: mongo:4.2.11
+  #   # ports:
+  #   #   - target: 27017
+  #   #     published: 27017
+  #   #     protocol: tcp
+  #   #     mode: host
+  #   volumes:
+  #     - type: bind
+  #       source: ./backup
+  #       target: /backup
