@@ -33,8 +33,14 @@ spec:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-          args:
-            {{- toYaml .Values.args | nindent 12 }}
+          args: ["-mongoURI","$(mongoURI)"]
+          env:
+            - name: mongoURI
+              valueFrom:
+                secretKeyRef:
+                  name: secrets
+                  key: mongoURI
+                  optional: false
           ports:
             - name: http
               containerPort: 4000
