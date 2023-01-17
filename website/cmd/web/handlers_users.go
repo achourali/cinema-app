@@ -15,6 +15,9 @@ type userTemplateData struct {
 }
 
 func (app *application) usersList(w http.ResponseWriter, r *http.Request) {
+	requestLogger := app.Logger.With("client_ip", r.RemoteAddr, "user_agent", r.UserAgent())
+	
+	requestLogger.Infow("Getting Users Lists")
 
 	// Get users list from API
 	var utd userTemplateData
@@ -46,6 +49,10 @@ func (app *application) usersList(w http.ResponseWriter, r *http.Request) {
 }
 
 func (app *application) usersView(w http.ResponseWriter, r *http.Request) {
+	requestLogger := app.Logger.With("client_ip", r.RemoteAddr, "user_agent", r.UserAgent())
+	
+	requestLogger.Infow("Users View")
+
 	// Get id from incoming url
 	vars := mux.Vars(r)
 	userID := vars["id"]

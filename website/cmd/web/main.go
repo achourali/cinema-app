@@ -7,6 +7,13 @@ import (
 	"net/http"
 	"os"
 	"time"
+
+
+	"github.com/prometheus/client_golang/prometheus"
+	"github.com/prometheus/client_golang/prometheus/promauto"
+	"github.com/prometheus/client_golang/prometheus/promhttp"
+
+	"go.uber.org/zap"
 )
 
 type apis struct {
@@ -20,10 +27,38 @@ type application struct {
 	errorLog *log.Logger
 	infoLog  *log.Logger
 	apis apis
+	Logger *zap.SugaredLogger
 }
 
-func main() {
+var requestTotal = promauto.NewCounterVec(prometheus.CounterOpts{
+	Name: "http_request_total",
+	Help: "Total number of requests",
+}, []string{"status"})
 
+func recordMetrics() {
+	go func() {
+			for {
+					opsProcessed.Inc()
+					time.Sleep(2 * time.Second)
+			}
+	}()
+}
+
+var (
+	opsProcessed = promauto.NewCounter(prometheus.CounterOpts{
+			Name: "myapp_processed_ops_total",
+			Help: "The total number of processed events",
+	})
+)
+
+func main() {
+	recordMetrics()
+	logger := buildLogger()
+
+
+	http.Handle("/metrics", promhttp.Handler())
+	http.ListenAndServe(":2112", nil)
+	
 	// Define command-line flags
 	serverAddr := flag.String("serverAddr", "", "HTTP server network address")
 	serverPort := flag.Int("serverPort", 8000, "HTTP server network port")
@@ -47,6 +82,7 @@ func main() {
 			showtimes: *showtimesAPI,
 			bookings: *bookingsAPI,
 		},
+		Logger: logger,
 	}
 
 	// Initialize a new http.Server struct.
@@ -63,4 +99,13 @@ func main() {
 	infoLog.Printf("Starting server on %s", serverURI)
 	err := srv.ListenAndServe()
 	errLog.Fatal(err)
+}
+
+
+func buildLogger() *zap.SugaredLogger {
+	config := zap.NewProductionConfig()
+	config.Level = zap.NewAtomicLevelAt(zap.InfoLevel)
+
+	l, _ := config.Build()
+	return l.Sugar()
 }
