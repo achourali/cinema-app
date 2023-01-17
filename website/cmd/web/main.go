@@ -7,6 +7,7 @@ import (
 	"net/http"
 	"os"
 	"time"
+	"github.com/prometheus/client_golang/prometheus/promhttp"
 )
 
 type apis struct {
@@ -21,6 +22,24 @@ type application struct {
 	infoLog  *log.Logger
 	apis apis
 }
+
+
+
+func recordMetrics() {
+	go func() {
+			for {
+					opsProcessed.Inc()
+					time.Sleep(2 * time.Second)
+			}
+	}()
+}
+
+var (
+	opsProcessed = promauto.NewCounter(prometheus.CounterOpts{
+			Name: "myapp_processed_ops_total",
+			Help: "The total number of processed events",
+	})
+)
 
 func main() {
 
@@ -59,7 +78,7 @@ func main() {
 		ReadTimeout:  5 * time.Second,
 		WriteTimeout: 10 * time.Second,
 	}
-
+	http.Handle("/metrics", promhttp.Handler())
 	infoLog.Printf("Starting server on %s", serverURI)
 	err := srv.ListenAndServe()
 	errLog.Fatal(err)
