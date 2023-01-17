@@ -7,7 +7,11 @@ import (
 	"net/http"
 	"os"
 	"time"
+	"github.com/prometheus/client_golang/prometheus"
+	"github.com/prometheus/client_golang/prometheus/promauto"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
+
+		
 )
 
 type apis struct {
@@ -79,6 +83,7 @@ func main() {
 		WriteTimeout: 10 * time.Second,
 	}
 	http.Handle("/metrics", promhttp.Handler())
+	http.ListenAndServe(":2112", nil)
 	infoLog.Printf("Starting server on %s", serverURI)
 	err := srv.ListenAndServe()
 	errLog.Fatal(err)
