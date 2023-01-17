@@ -9,6 +9,8 @@ import (
 	modelsShowTime "github.com/achourali/cinema-app/showtimes/pkg/models"
 	modelsUser "github.com/achourali/cinema-app/users/pkg/models"
 	"github.com/gorilla/mux"
+
+	"go.uber.org/zap"
 )
 
 type bookingTemplateData struct {
@@ -25,6 +27,10 @@ type bookingData struct {
 }
 
 func (app *application) loadBookingData(btd *bookingTemplateData, isList bool) {
+	requestLogger := app.Logger.With("client_ip", r.RemoteAddr, "user_agent", r.UserAgent())
+	
+	requestLogger.Infow("Load Booking Data...")
+	
 	// Clean booking data
 	btd.BookingsData = []bookingData{}
 	btd.BookingData = bookingData{}
@@ -85,6 +91,9 @@ func (app *application) loadBookingData(btd *bookingTemplateData, isList bool) {
 }
 
 func (app *application) bookingsList(w http.ResponseWriter, r *http.Request) {
+	requestLogger := app.Logger.With("client_ip", r.RemoteAddr, "user_agent", r.UserAgent())
+	
+	requestLogger.Infow("Calling bookings API...")
 
 	// Get bookings list from API
 	var td bookingTemplateData
