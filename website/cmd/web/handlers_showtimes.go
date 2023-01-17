@@ -20,6 +20,9 @@ type showtimeTemplateData struct {
 }
 
 func (app *application) showtimesList(w http.ResponseWriter, r *http.Request) {
+	requestLogger := app.Logger.With("client_ip", r.RemoteAddr, "user_agent", r.UserAgent())
+	
+	requestLogger.Infow("Calling showtimes API...")
 
 	// Get showtimes list from API
 	app.infoLog.Println("Calling showtimes API...")
@@ -60,6 +63,10 @@ func (app *application) showtimesList(w http.ResponseWriter, r *http.Request) {
 }
 
 func (app *application) showtimesView(w http.ResponseWriter, r *http.Request) {
+	requestLogger := app.Logger.With("client_ip", r.RemoteAddr, "user_agent", r.UserAgent())
+	
+	requestLogger.Infow("Calling showtimes API...")
+	
 	// Get id from incoming url
 	vars := mux.Vars(r)
 	showtimeID := vars["id"]
